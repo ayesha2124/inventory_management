@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROP Result</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f7f8fc, #dbeafe); /* Soft neutral to light blue */
+            color: #1f2937;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .result-box {
+            background: #f9ecec;
+            padding: 40px 60px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            animation: slideUp 0.6s ease-in-out;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #111827;
+        }
+
+        .rop-value {
+            font-size: 44px;
+            font-weight: 700;
+            color: #10ac2c;
+            margin-top: 20px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #2563eb;
+            color: rgb(215, 212, 212);
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #1d4ed8;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #3b82f6; }
+            to { text-shadow: 0 0 15px #3b82f6; }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h1>📊 Reorder Point Result</h1>
+
+        <p><strong>Average Daily Demand:</strong> {{ avg_daily_demand }}</p>
+        <p><strong>Lead Time (Days):</strong> {{ lead_time }}</p>
+
+        <p class="rop-value">ROP = {{ reorder_point }}</p>
+
+        <a href="/reorder">🔁 Calculate Again</a>
+    </div>
+</body>
+</html>

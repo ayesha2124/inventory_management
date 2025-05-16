@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: url("/static/images/supplier.jpg") no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding-right: 60px;
+            overflow-x: hidden;
+        }
+
+        .performance-box {
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 25px;
+            padding: 50px 40px;
+            max-width: 620px;
+            width: 90%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .performance-box:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: rgb(5, 5, 58);
+            margin-bottom: 35px;
+            font-size: 28px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            text-align: left;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            color: black;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        button {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #2ecc71;
+            transform: scale(1.03);
+        }
+
+        .result {
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            color: #fff;
+        }
+
+        .good {
+            color: #2ecc71;
+        }
+
+        .poor {
+            color: #e74c3c;
+        }
+
+        .unknown {
+            color: #f1c40f;
+        }
+    </style>
+</head>
+<body>
+    <div class="performance-box">
+        <h2>📦 Supplier Performance Evaluation</h2>
+        <form action="/supplier_result" method="POST">
+            <label for="dealer_id">Select Dealer:</label>
+            <select name="dealer_id" required>
+                {% for dealer in dealer_ids %}
+                <option value="{{ dealer }}">{{ dealer }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="on_time_rate">On-Time Delivery Rate (%)</label>
+            <input type="number" name="on_time_rate" step="1" min="70" max="100" placeholder="e.g. 70" required>
+
+            <label for="defect_rate">Defective Rate (%)</label>
+            <input type="number" name="defect_rate" step="0.01" min="0.01" max="10.00" placeholder="e.g. 1" required>
+
+            <label for="lead_time">Average Lead Time (days)</label>
+            <input type="number" name="lead_time" step="1" min="1" max="14" placeholder="e.g. 5" required>
+
+            <button type="submit">Evaluate</button>
+        </form>        
+
+        {% if result %}
+        <div class="result 
+            {% if result == 'Good' %}good
+            {% elif result == 'Poor' %}poor
+            {% else %}unknown
+            {% endif %}">Performance Status: {{ result }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>

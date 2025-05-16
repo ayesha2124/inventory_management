@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reorder Point Calculator</title>
+    <style>
+        /* Blurred Background Image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/calculation.webp') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: black;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            overflow-x: hidden;
+        }
+
+        .form-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 70px 60px;
+            border-radius: 28px;
+            box-shadow: 0 20px 70px rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(14px);
+            text-align: center;
+            width: 500px;
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            color: black;
+            margin-bottom: 35px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 18px 0 6px 10px;
+            font-weight: 600;
+            color: black;
+        }
+
+        input, button {
+            font-size: 16px;
+            padding: 14px 22px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 18px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        button {
+            background-color: #00c9ff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #007bbf;
+        }
+        select {
+            font-size: 16px;
+            padding: 14px 22px;
+            border-radius: 10px;
+            border: none;
+            margin-bottom: 18px;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-box">
+        <h1>📦 Reorder Point Calculator</h1>
+        <form action="/reorder_result" method="post">
+            <label for="dealer_id">Select Product ID:</label>
+            <select name="dealer_id" required>
+                <option value="" disabled selected>Select Product ID</option>
+                <option value="P000">P000</option>
+                <option value="P001">P001</option>
+                <option value="P002">P002</option>
+                <option value="P003">P003</option>
+                <option value="P004">P004</option>
+                <option value="P005">P005</option>
+                <option value="P006">P006</option>
+                <option value="P007">P007</option>
+                <option value="P008">P008</option>
+                <option value="P009">P009</option>
+                <option value="P010">P010</option>
+                <option value="P011">P011</option>
+                <option value="P012">P012</option>
+                <option value="P013">P013</option>
+                <option value="P014">P014</option>
+                <option value="P015">P015</option>
+                <option value="P016">P016</option>
+                <option value="P017">P017</option>
+                <option value="P018">P018</option>
+                <option value="P019">P019</option>
+            </select>
+            
+            <label for="avg_daily_demand">Average Daily Demand</label>
+            <input 
+                type="number" 
+                id="avg_daily_demand"
+                name="avg_daily_demand" 
+                step="0.01" 
+                min="5" 
+                max="190" 
+                placeholder="e.g. 85.5" 
+                required>
+
+            <label for="lead_time">Lead Time (Days)</label>
+            <input 
+                type="number" 
+                id="lead_time"
+                name="lead_time" 
+                step="1" 
+                min="1" 
+                max="14" 
+                placeholder="e.g. 5" 
+                required>
+
+            <button type="submit">Calculate ROP</button>
+        </form>
+    </div>
+</body>
+</html>

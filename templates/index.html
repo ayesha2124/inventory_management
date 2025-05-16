@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI-Driven Inventory Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Poppins', sans-serif;
+            background: url('/static/images/homepage.avif') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 95%;
+            max-width: 900px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            padding: 35px 40px;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 160px;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+            background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.1));
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI-Driven Inventory Management System</h1>
+        <div class="card-container">
+            <a href="/forecast" class="card">📈<br>Demand Forecasting</a>
+            <a href="/reorder" class="card">📦<br>Reorder Point Calculator</a>
+            <a href="/supplier" class="card">🤝<br>Supplier Performance</a>
+            <a href="/stockout" class="card">📉<br>Stockout Risk Prediction</a>
+        </div>
+    </div>
+</body>
+</html>
